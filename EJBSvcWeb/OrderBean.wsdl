@@ -1,0 +1,65 @@
+<definitions name='OrderBeanService' targetNamespace='http://ejb.webage.com/' xmlns='http://schemas.xmlsoap.org/wsdl/' xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' xmlns:tns='http://ejb.webage.com/' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+ <types>
+  <xs:schema targetNamespace='http://ejb.webage.com/' version='1.0' xmlns:tns='http://ejb.webage.com/' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:element name='BadCustomerException' type='tns:BadCustomerException'/>
+   <xs:element name='orderSoup' type='tns:orderSoup'/>
+   <xs:element name='orderSoupResponse' type='tns:orderSoupResponse'/>
+   <xs:complexType name='orderSoup'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='arg0' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='orderSoupResponse'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='return' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='BadCustomerException'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='message' type='xs:string'/>
+     <xs:element minOccurs='0' name='name' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+  </xs:schema>
+ </types>
+ <message name='Order_orderSoup'>
+  <part element='tns:orderSoup' name='orderSoup'></part>
+ </message>
+ <message name='Order_orderSoupResponse'>
+  <part element='tns:orderSoupResponse' name='orderSoupResponse'></part>
+ </message>
+ <message name='BadCustomerException'>
+  <part element='tns:BadCustomerException' name='BadCustomerException'></part>
+ </message>
+ <portType name='Order'>
+  <operation name='orderSoup' parameterOrder='orderSoup'>
+   <input message='tns:Order_orderSoup'></input>
+   <output message='tns:Order_orderSoupResponse'></output>
+   <fault message='tns:BadCustomerException' name='BadCustomerException'></fault>
+  </operation>
+  <jaxws:bindings
+        xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+        <jaxws:enableAsyncMapping>true</jaxws:enableAsyncMapping>
+  </jaxws:bindings>  
+ </portType>
+ <binding name='OrderBinding' type='tns:Order'>
+  <soap:binding style='document' transport='http://schemas.xmlsoap.org/soap/http'/>
+  <operation name='orderSoup'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+   <fault name='BadCustomerException'>
+    <soap:fault name='BadCustomerException' use='literal'/>
+   </fault>
+  </operation>
+ </binding>
+ <service name='OrderBeanService'>
+  <port binding='tns:OrderBinding' name='OrderBeanPort'>
+   <soap:address location='http://127.0.0.1:8080/EJBSvcApp-EJBSvcEJB/OrderBean'/>
+  </port>
+ </service>
+</definitions>

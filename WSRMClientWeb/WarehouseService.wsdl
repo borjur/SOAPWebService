@@ -1,0 +1,100 @@
+<definitions name='WarehouseSystemService' targetNamespace='http://warehouse.webage.com/' xmlns='http://schemas.xmlsoap.org/wsdl/' xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' xmlns:tns='http://warehouse.webage.com/' xmlns:wsp='http://schemas.xmlsoap.org/ws/2004/09/policy' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+ <types>
+  <xs:schema targetNamespace='http://warehouse.webage.com/' version='1.0' xmlns:tns='http://warehouse.webage.com/' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:element name='createOrder' type='tns:createOrder'/>
+   <xs:element name='createOrderResponse' type='tns:createOrderResponse'/>
+   <xs:element name='getOrderStatus' type='tns:getOrderStatus'/>
+   <xs:element name='getOrderStatusResponse' type='tns:getOrderStatusResponse'/>
+   <xs:complexType name='createOrder'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='arg0' type='tns:order'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='order'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='orderId' type='xs:string'/>
+     <xs:element minOccurs='0' name='productId' type='xs:string'/>
+     <xs:element name='quantity' type='xs:int'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='createOrderResponse'>
+    <xs:sequence/>
+   </xs:complexType>
+   <xs:complexType name='getOrderStatus'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='arg0' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='getOrderStatusResponse'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='return' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+  </xs:schema>
+ </types>
+ <message name='WarehouseSystem_getOrderStatus'>
+  <part element='tns:getOrderStatus' name='getOrderStatus'></part>
+ </message>
+ <message name='WarehouseSystem_getOrderStatusResponse'>
+  <part element='tns:getOrderStatusResponse' name='getOrderStatusResponse'></part>
+ </message>
+ <message name='WarehouseSystem_createOrder'>
+  <part element='tns:createOrder' name='createOrder'></part>
+ </message>
+ <message name='WarehouseSystem_createOrderResponse'>
+  <part element='tns:createOrderResponse' name='createOrderResponse'></part>
+ </message>
+ <portType name='WarehouseSystem'>
+  <operation name='createOrder' parameterOrder='createOrder'>
+   <input message='tns:WarehouseSystem_createOrder'></input>
+   <output message='tns:WarehouseSystem_createOrderResponse'></output>
+  </operation>
+  <operation name='getOrderStatus' parameterOrder='getOrderStatus'>
+   <input message='tns:WarehouseSystem_getOrderStatus'></input>
+   <output message='tns:WarehouseSystem_getOrderStatusResponse'></output>
+  </operation>
+ </portType>
+ <binding name='WarehouseSystemBinding' type='tns:WarehouseSystem'>
+  <wsp:PolicyReference URI='#exactly_one_in_order_rm_delivery'/>
+  <soap:binding style='document' transport='http://schemas.xmlsoap.org/soap/http'/>
+  <operation name='createOrder'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+  <operation name='getOrderStatus'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+ </binding>
+ <service name='WarehouseSystemService'>
+  <port binding='tns:WarehouseSystemBinding' name='WarehouseSystemPort'>
+   <soap:address location='http://127.0.0.1:8081/WSRMSvcWeb/WarehouseService'/>
+  </port>
+ </service>
+ 
+ <wsp:Policy wsu:Id='exactly_one_in_order_rm_delivery' xmlns:wsu='http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd'>
+  <wsp:All>
+   <wsrmp:DeliveryAssurance xmlns:wsrmp='http://docs.oasis-open.org/ws-rx/wsrmp/200702'>
+    <wsp:Policy>
+     <wsp:ExactlyOne>
+      <wsp:All>
+       <wsrmp:ExactlyOnce/>
+       <wsrmp:InOrder/>
+      </wsp:All>
+     </wsp:ExactlyOne>
+    </wsp:Policy>
+   </wsrmp:DeliveryAssurance>
+  </wsp:All>
+ </wsp:Policy>
+ 
+</definitions>

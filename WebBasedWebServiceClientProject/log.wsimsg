@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<log timestamp="2008-10-07T10:44:30.554"
+    xmlns="http://www.ws-i.org/testing/2004/07/log/"
+    xmlns:wsi-monConfig="http://www.ws-i.org/testing/2004/07/monitorConfig/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <monitor version="1.0" releaseDate="2003-03-20">
+    <implementer name="IBM" location=""/>
+    <environment>
+      <runtime name="Java(TM) 2 Runtime Environment, Standard Edition" version="1.5.0_16-b02"/>
+      <operatingSystem name="Windows XP" version="5.1"/>
+      <xmlParser name="Apache Xerces" version="Xerces-J 2.8.0"/>
+    </environment>
+    <wsi-monConfig:configuration>
+    <wsi-monConfig:comment>Comment</wsi-monConfig:comment>
+      <wsi-monConfig:logFile replace="true" location="URL">
+      <wsi-monConfig:addStyleSheet href="null" type="null" />
+    </wsi-monConfig:logFile>
+      <wsi-monConfig:logDuration>600</wsi-monConfig:logDuration>
+      <wsi-monConfig:cleanupTimeoutSeconds>3</wsi-monConfig:cleanupTimeoutSeconds>
+      <wsi-monConfig:manInTheMiddle>
+      </wsi-monConfig:manInTheMiddle>
+    </wsi-monConfig:configuration>
+  </monitor>
+
+<messageEntry xsi:type="httpMessageEntry" ID="1" conversationID="1" type="request" timestamp="2008-10-07T10:42:54.132Z">
+<messageContent>&lt;env:Envelope xmlns:env=&apos;http://schemas.xmlsoap.org/soap/envelope/&apos;&gt;&lt;env:Header&gt;&lt;/env:Header&gt;&lt;env:Body&gt;&lt;ns2:addMovie xmlns:ns2=&quot;http://www.mycom.com/movie&quot;&gt;&lt;movie rating=&quot;PG13&quot; title=&quot;Forbiden kingdom&quot;&gt;&lt;description&gt;Chinese tales&lt;/description&gt;&lt;actor&gt;Jackie Chan&lt;/actor&gt;&lt;actor&gt;Jet Li&lt;/actor&gt;&lt;/movie&gt;&lt;/ns2:addMovie&gt;&lt;/env:Body&gt;&lt;/env:Envelope&gt;</messageContent>
+<senderHostAndPort>localhost:8081</senderHostAndPort>
+<receiverHostAndPort>localhost:8080</receiverHostAndPort>
+<httpHeaders>POST /WebServiceProject/MovieService HTTP/1.1&#xd;
+SOAPAction: &quot;http://www.mycom.com/movie/NewOperation&quot;&#xd;
+Content-Type: text/xml; charset=UTF-8&#xd;
+JBoss-Remoting-Version: 22&#xd;
+User-Agent: JBossRemoting - 2.2.2.SP1 (Bluto)&#xd;
+Host: localhost:8080&#xd;
+Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2&#xd;
+Connection: keep-alive&#xd;
+Transfer-Encoding: chunked&#xd;
+&#xd;
+</httpHeaders>
+</messageEntry>
+<messageEntry xsi:type="httpMessageEntry" ID="2" conversationID="1" type="response" timestamp="2008-10-07T10:42:54.148Z">
+<messageContent>&lt;env:Envelope xmlns:env=&apos;http://schemas.xmlsoap.org/soap/envelope/&apos;&gt;&lt;env:Header&gt;&lt;/env:Header&gt;&lt;env:Body&gt;&lt;ns2:addMovieResponse xmlns:ns2=&quot;http://www.mycom.com/movie&quot;&gt;&lt;status&gt;Successfully added movie Forbiden kingdom&lt;/status&gt;&lt;/ns2:addMovieResponse&gt;&lt;/env:Body&gt;&lt;/env:Envelope&gt;</messageContent>
+<senderHostAndPort>localhost:8080</senderHostAndPort>
+<receiverHostAndPort>localhost:8081</receiverHostAndPort>
+<httpHeaders>HTTP/1.1 200 OK&#xd;
+Server: Apache-Coyote/1.1&#xd;
+X-Powered-By: Servlet 2.4; JBoss-4.2.2.GA (build: SVNTag=JBoss_4_2_2_GA date=200710221139)/Tomcat-5.5&#xd;
+Content-Type: text/xml;charset=UTF-8&#xd;
+Transfer-Encoding: chunked&#xd;
+Date: Tue, 07 Oct 2008 14:42:54 GMT&#xd;
+&#xd;
+</httpHeaders>
+</messageEntry>
+</log>

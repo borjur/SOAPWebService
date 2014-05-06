@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<jboss-web>
+   <resource-ref>
+       <res-ref-name>
+           MovieDSAlias
+       </res-ref-name>
+       <res-type>
+           javax.sql.DataSource
+       </res-type>
+       <jndi-name>
+           java:jdbc/MovieDS
+       </jndi-name>
+   </resource-ref>
+</jboss-web>

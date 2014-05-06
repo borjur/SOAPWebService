@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<project name="SimpleXJC" default="build" basedir=".">
+
+<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+  <classpath>
+    <fileset dir="C:\LabFiles\jaxblib" includes="*.jar"/>
+  </classpath>
+</taskdef>
+
+<target name="build">
+<xjc destDir="src" package="com.jaxb.movie" >
+  <schema  dir="xml" includes="movie.xsd" />
+</xjc>
+
+
+</target>
+	
+</project> 
